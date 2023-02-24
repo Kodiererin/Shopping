@@ -4,20 +4,151 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set('view engine','ejs');
-const { spawn } = require('child_process');
-
-
-// -------------Setting Up  Database------------------------
 const mongoose = require('mongoose')
+const { spawn } = require('child_process');  
+
 main().catch(err => console.log(err));
+
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/buyNowitems',{useNewUrlParser : true}); 
+  await mongoose.connect('mongodb://127.0.0.1:27017/buyNowitems',{useNewUrlParser : true}); 
     console.log("Database Connected");
 }
 mongoose.set('strictQuery', true);
-const item = require("./models/item")
+
+const item = require("./models/item");
 const seller = require("./models/seller");
 const user = require("./models/user");
+
+// const item = mongoose.model('item' ,new mongoose.Schema({
+//     name : {
+//         type : String,
+//         uppercase : true,
+//     },
+//     sellerName : {
+//         type : String,
+//         boolean : true,
+//     },
+//     sellerID : {
+//         type : String,
+//         required : true,
+//     },
+//     productDetails : {
+//         type : String,
+//     },
+//     productreviews : {
+//         type : Array,
+//         default : [String],
+//     },
+//     sellerreviews : {
+//         type : Array,
+//         default : [String],
+//     },
+//     price : {
+//         type : Number,
+//         minimum : 0,
+//         required : true,
+//     },
+// }));
+
+// // ////////////////////-Database-for-Chat-//////////////////////////////////
+// const userSchema = mongoose.Schema(
+//     {
+//       username: {
+//         type: String,
+//         require: true,
+//       },
+//       email: {
+//         type: String,
+//         require: true,
+//       },
+//       password: {
+//         type: String,
+//         require: true,
+//       },
+//     },
+//     { timestamps: true }
+//   );
+  
+//   const usersChat = new mongoose.model("userChat", userSchema);
+
+// /////////////////////////////-Creating-Users-Data//////////////////////////////////////////////////////////////////////
+
+// const user = mongoose.model('user',new mongoose.Schema({
+//     name : {
+//         type : String,
+//     },
+//     email : {
+//         type : String,
+//     },
+//     password : {
+//         type : String,
+//     },
+//     userorders : [{
+//         orderId : {type : String},
+//         orderstatus : {
+//             atSellerHub : {
+//                 type : Boolean , default : false,
+//             },
+//             inTransit : {
+//                 type : Boolean, default : false,
+//             },
+//             usersHub : {
+//                 type : Boolean, default : false,
+//             },
+//             outofDelivery : {
+//                 type : Boolean, default : false,
+//             },
+//         }
+//     }
+//     ],
+// }));
+
+// const seller = mongoose.model('seller' , new mongoose.Schema({
+//     name : {type : String},
+//     sellerId : {type : String , unique : true },
+//     password : {type : String },
+//     orders : [
+//         {
+//             productId : {
+//                 type : String
+//             },
+//             customerId : {
+//                 type : String,
+//             },
+//             customerPhone : {
+//                 type : String,
+//             },
+//             customerAddress : {
+//                 type : String,
+//             },
+//             status : {
+//                 atSellerHub : {
+//                     type : Boolean , default : true,
+//                 },
+//                 inTransit : {
+//                     type : Boolean, default : false,
+//                 },
+//                 usersHub : {
+//                     type : Boolean, default : false,
+//                 },
+//                 outofDelivery : {
+//                     type : Boolean, default : false,
+//                 },
+//             }
+//         }
+//     ],
+//     sellerReview : [
+//         {
+//             sellerReview : {
+//                 type : String,
+//             },
+//             sellerRating : {
+//                 type : String,
+//             }
+//         }
+//     ]
+// }));
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -33,13 +164,41 @@ app.get('/register',function(req,res){
         password : 'abc123',
         orders : ['112345678' , 'abc12345' , '11112dd121'],
     });
+
+    // ujjwal.save(function(err,succ){
+    //     if(!err && succ){
+    //         console.log(succ);
+    //     }
+    // })
 })
 
 
 // //////////////////////ByDefaultLoginFormOpens////////////////////////////
-app.get('/',async function(req,res)
-{    
+app.get('/',async function(req,res){
+    
     res.render('login');
+    
+    // const data = new item({
+    //         name : 'Pen',
+    //         productDetails : 'Blue Colour Pen',
+    //         productreviews :['Great Ink' , 'Good Milege'],
+    //         sellerreviews :['Delivery On time' , 'Great Pricing'],
+    //         price : 21.99,
+    //         sellerName : 'GadaStationary',
+    //         sellerID : 'bnow01'
+            
+    //     });
+
+    // data.save(function(err,succ){
+    //     if(!err && succ){
+    //         console.log("Data Has Been Saved Successfully");
+    //     }
+    // });
+
+    // const myData = item.find({name : 'Pen'},function(err,getData){
+    //     console.log(getData);
+    //     res.render('buyer',{getData : getData})
+    // });
 })
 
 app.post('/login',function(req,res){
@@ -51,6 +210,8 @@ app.post('/login',function(req,res){
         if(!err && accept){
             console.log("User Found");
             const userId = accept.id;
+            // res.render('search/'+)
+            // console.log(userId);
             res.render('search',{userId})
         }
     })
@@ -64,6 +225,8 @@ app.get('/sellerRegister' , function(req,res){
 
 
 app.post('/regis',function(req,res){
+    // console.log(req.body);
+    // console.log(req.body.password);
     if(req.body.password[0]===req.body.password[1]){
         console.log("Password is Matched");
     }
@@ -81,6 +244,38 @@ app.post('/regis',function(req,res){
             res.render('registrationSuccessful');
         }
     })
+    // console.log(newUser);
+    // user.findOne({email : newUser.email},function(err,success){
+    //     if(!err && success){
+    //         success
+    //         res.render('useralreadyexist');
+    //     }
+    //     else if(!err && !success){
+    //         account = !account;
+    //         res.render('registrationSuccessful');
+    //     }
+    //     else{
+    //         res.send('<h1>Error During Registration</h1>')
+    //     }
+    // })
+    // user.findOne({email : newUser.email},function(err,success){
+    //     if(!err && !success){
+    //         console.log("Data Not Found");
+    //     }
+    //     else if(!err && success){
+    //         console.log("Data found");
+    //         newUser.save(function(err,result){
+    //             if(!err && result){
+    //                 console.log("Data Saved");
+    //             }
+    //         });
+    //     }
+    //     else{
+    //         console.log("Error in the Page");
+    //     }
+    // });
+    // console.log(m);
+
 });
 
 app.post('/registerNew',function(req,res){
@@ -112,23 +307,26 @@ app.post('/regisseller' , function(req,res){
 
 //    Yha se Error ko dekho
 app.post('/search',async function(req,res){
+    // console.log(userId);
+    // console.log(req.body);
 
     const getUserId = req.body.userId;
-    const myItem = req.body.searchItem;
-    console.log(myItem);
-    if(myItem!=null && myItem!=undefined){
-            const getitem =  item.find({name: myItem},function(err,result){
-                console.log(result);
-                if(!err){
-                    if(result!=[] || result!=null || result!=undefined){
-                        console.log(result);
-                        res.render('buyer',{ItemName : myItem , getData : result , getUserId});
-                    }
-                    else{
-                        res.render('productnotfound');
-                    }
+
+const myItem = req.body.searchItem;
+   console.log(myItem);
+   if(myItem!=null && myItem!=undefined){
+        const getitem =  item.find({name: myItem},function(err,result){
+            console.log(result);
+            if(!err){
+                if(result!=[] || result!=null || result!=undefined){
+                    console.log(result);
+                    res.render('buyer',{ItemName : myItem , getData : result , getUserId});
                 }
-        });
+                else{
+                    res.render('productnotfound');
+                }
+            }
+    });
    }
    else{
         const getitem =  item.find({name: myItem},function(err,result){
@@ -148,17 +346,46 @@ app.post('/search',async function(req,res){
 
 // Setting up for client seller chat    Check and Fix the Code
 app.post('/contact' , function(req,res){
+  // Send a response to the client indicating that the server has started
+//   res.sendFile(__dirname+'/index.html');                 // Check from here #_Chat Feature
     res.render('index');
 
 
 })
 
-// Set Up the Chat Feature as soon as possible
 app.get('/contact' , function(req,res){
     // console.log(__dirname);
     // res.sendFile(__dirname + '/index.html');
+
+
     res.render('index');                // temporary change
 })
+
+// // Setting up for client seller chat
+// app.post('/contact' , function(req,res){
+//     // Spawn a new process for running the server file
+//   const child = spawn('node', ['server.js']);
+//     console.log('====================================');
+//     console.log("Chat Server Starting");
+//     console.log('====================================');
+
+
+//   // Listen for any errors that occur in the child process
+//   child.on('error', (err) => {
+//     console.error(err);
+//   });
+
+
+//   // Send a response to the client indicating that the server has started
+//   res.sendFile(__dirname+'/index.html');
+// })
+
+// app.post('/search',async function(req,res){
+//    console.log(req.body.searchItem);
+//    const myitem =  await item.findOne({name: req.body.searchItem});
+//    console.log(myitem);
+//      res.render('buyer',{getData : myitem});
+// })
 
 app.get('/seller',function(req,res){
     res.render('seller');
@@ -202,7 +429,7 @@ app.post('/:productId/:userId',async function(req,res){
     console.log("User ID "+userId);
 
 
-    const getData = await item.findById(getId,function(err,result){
+    const getData =item.findById(getId,function(err,result){
         // console.log(result.name);
         console.log(result);
         res.render('buynow',{ getId , userId,product : result})
@@ -214,12 +441,31 @@ app.post('/order/:productId/:userId/:sellerID' , function(req,res){
     let myproductID = req.params.productId+"";
     let mycustomerID = req.params.userId+"";
     let mysellerID = req.params.sellerID+"";
+
+    // console.log("Product Id "+myproductID);
+    // console.log("User ID "+mycustomerID);
+    // console.log("Seller Id "+mysellerID);
+
     console.log(req.body);
 
     let address = req.body.address;
         address = address+"";
     let phonenumber = req.body.phonenumber;
         phonenumber = phonenumber+"";
+
+    // const tempSeller = new seller({
+    //     name : "Jagmohan",
+    //     sellerId : "bnow001",
+    // })
+
+    // tempSeller.save(function(err,result){
+    //     if(!err && result){
+    //         console.log("Data Saved");
+    //     }
+    // });
+
+    // Starting the Search operation for items Entry.
+
 
     seller.find({sellerId : mysellerID} , function(err,result){
         if(!err && result){
@@ -336,6 +582,34 @@ app.post('/review',function(req,res){
           }
         }
       );
+      
+      //   --------------BSON Error----------------------
+      
+      
+    //   seller.findOneAndUpdate(
+    //     { 'orders.productId': productID }, // filter to find the order with the given product ID
+    //     { $set: { 'orders.$.productReview': productreview, 'orders.$.productRating': productrating } },
+    //     (err, res) => {
+    //       if (err) throw err;
+    //       console.log(res);
+    //     }
+    //   );
+      
+
+    // let sellerReview = req.body.seller-review;
+    //     sellerReview=sellerReview+"";
+    // let productReview = req.body.product-review;
+    //     productReview = productReview+"";
+
+    // console.log(sellerReview);
+    // console.log(productReview);
+    // item.findByIdAndUpdate(req.params.productId ,
+    //     { $push: { productreviews : productReview  } , $push: { sellerreviews : sellerReview  }  },
+    //     function(err,accept){
+    //     if(!err && accept){
+    //         console.log("Data Found");
+    //     }
+    // })
 
 })
 
@@ -391,6 +665,15 @@ app.get('/updateOrder',function(req,res){
     })
 })
 
+// seller Homepage
+
+// app.get('/mySellerLog',function(req,res){
+//     console.log("Welcome to seller home");
+//     res.render('mySellerLog')
+// })
+
+
+
 // get request for updating the transit status of the order 
 app.get('/updateTransit',function(req,res){
     let sellerId = req.query.arg1;
@@ -418,6 +701,20 @@ app.post('/transitUpdate' ,async function(req,res){
         customerID = customerID+"";
     const selectedDeliveryStatus = req.body.delivery_status;
     console.log(selectedDeliveryStatus);
+
+    // const getSeller = await seller.findOne(
+    //     { sellerId: sellerID, 'orders.productId': productID },
+    //     (err, seller) => {
+    //       if (err) {
+    //         console.error(err);
+    //       } else if (!seller) {
+    //         console.log('Seller not found');
+    //       } else {
+    //         const order = seller.orders.find((o) => o.productId === productID);
+    //         console.log(order);
+    //       }
+    //     }
+    //   );
 
       const getSeller = await seller.findOne(
         { sellerId: sellerID, 'orders.productId': productID },
@@ -458,6 +755,36 @@ app.post('/transitUpdate' ,async function(req,res){
             console.log(updatedSeller);
         }
         );
+
+        // seller.findOneAndUpdate(
+        //     // Query to find the specific order
+        //     { 
+        //         sellerId: sellerID,
+        //         'orders._id': orderId
+        //     },
+        //     // Update to be applied
+        //     {
+        //         $set: {
+        //             'orders.$.status.atSellerHub': false,
+        //             'orders.$.status.inTransit': true
+        //         }
+        //     },
+        //     // Options for the update (optional)
+        //     {
+        //         new: true // Return the updated document
+        //     },
+        //     // Callback function to handle the result
+        //     (err, updatedSeller) => {
+        //         if (err) {
+        //             console.log(err);
+        //             // Handle the error
+        //         } else {
+        //             console.log(updatedSeller);
+        //             // Handle the updated seller document
+        //         }
+        //     }
+        // );
+
 
 
         const userId = customerID; 
@@ -579,6 +906,14 @@ app.listen(3000,function()
 {
     console.log("Server Has Started On Port 3000");
 })
+
+
+
+
+// // Setting up the chat configuration.
+// import dotenv from 'dotenv'
+
+
 
 app.get('/', (req,res)=>{
    res.send('Hello')
