@@ -41,12 +41,12 @@
     <body>
       <nav>
         <div>
-          <a href="#">Home</a>
+          <a href="/search">Search</a>
         </div>
         <ul>
           <li><a href="#">Profile</a></li>
           <li><a href="#">Cart</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="/">Logout</a></li>
         </ul>
       </nav>
   
@@ -68,11 +68,7 @@
               </table>
           </div>
           <div class="seller-reviews">
-              <table><p>Product Reviews : </p>
-              <% for (var j = 0; j < getData[i].sellerreviews.length; j++) { %>
-                  <tr><td><%= if(j<5){ getData[i].sellerreviews[j] %>}</td></tr>
-                  <% } %>
-              </table>
+              
           </div>
           <div class="product-buttons">
             <input type="text" name="userId" id="" value="<%=getUserId%>" hidden>
