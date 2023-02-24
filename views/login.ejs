@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+      <div class="md:flex">
+        <div class="w-full p-4 px-5 py-5">
+          <div class="text-center mb-4">
+            <h1 class="text-xl font-bold text-gray-900">Login to Your Account</h1>
+          </div>
+          <form action="/login" method="POST">
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="email" >
+                Email
+              </label>
+              <input class="bg-gray-200 border-2 w-full p-2 rounded-lg focus:outline-none focus:bg-white focus:border-purple-500" type="email" name="email" id="email" required>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="password">
+                Password
+              </label>
+              <input class="bg-gray-200 border-2 w-full p-2 rounded-lg focus:outline-none focus:bg-white focus:border-purple-500" type="password" name="password" id="password" required>
+            </div>
+            <button class="bg-purple-500 text-white p-2 rounded-lg hover:bg-purple-700" type="submit">Login</button>
+          </form>
+        </div>
+        <form class="w-full md:w-1/2 p-4 px-5 py-5 bg-purple-500 text-center text-white" method="post" action="/registerNew">
+          <div class="text-center mb-4">
+            <h1 class="text-xl font-bold">Don't have an account?</h1>
+            <p>Register now and start using our services.</p>
+          </div>
+          <button class="bg-white text-purple-500 border-2 border-purple-500 p-2 rounded-lg hover:bg-purple-500 hover:text-white" type="submit">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

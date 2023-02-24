@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buyer Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Shipping Details</h1>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form action="/order/<%=getId%>/<%=userId%>/<%=product.sellerID%>" method="POST">
+          <div class="form-group">
+            <label for="item-name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Your name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="item-name">Item Name</label>
+            <input type="text" class="form-control" id="item-name" placeholder="Enter item name" value="<%=product.name%>" name="productname">
+          </div>
+          <div class="form-group">
+            <label for="item-id">Item ID</label>
+            <input type="text" class="form-control" id="item-id" placeholder="Enter item ID" value="<%=product._id%>" name="productid">
+          </div>
+          <div class="form-group">
+            <label for="seller-id">Seller ID</label>
+            <input type="text" class="form-control" id="seller-id" placeholder="Enter seller ID" value="<%=product.sellerID%>" name="product_sellerid">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+          </div>
+          <div class="form-group">
+            <label for="phone-number">Phone Number</label>
+            <input type="tel" class="form-control" id="phone-number" placeholder="Enter phone number" name="phonenumber">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.3/dist/umd/popper.min.js"
+      integrity="sha384-6HUoGrKjgoyRWNoOqOF3CY39VPd9K9XGVyODeaBYrI8T1T/yi6zK0NpIY6v/8qcC"
+      crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-PBOdIo3b8Wdt7GxMJwKTnz06LCVjvH8W5o5y5b5a5dO3J8bD+nVZzCFeIkKT+V7v"
+      crossorigin="anonymous"></script>
+</body>
+</html>

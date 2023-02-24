@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product Review Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		/* Style for the form */
+		form {
+			max-width: 600px;
+			margin: auto;
+			padding: 20px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+		}
+		form label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		form input[type="text"], form textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+		}
+		form textarea {
+			height: 150px;
+		}
+		form button[type="submit"] {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		form button[type="submit"]:hover {
+			background-color: #0069d9;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Product Review Form</h1>
+		<form action="/updateReviews" method="POST">
+			<div class="form-group">
+				<label for="productId">Product ID:</label>
+				<input type="text" class="form-control" id="productId" name="productId" required>
+			</div>
+			<div class="form-group">
+				<label for="sellerId">Seller ID:</label>
+				<input type="text" class="form-control" id="sellerId" name="sellerId" required>
+			</div>
+			<div class="form-group">
+				<label for="review">Review:</label>
+				<textarea class="form-control" id="review" name="review" required></textarea>
+			</div>
+			<div class="form-group">
+				<label for="rating">Rating:</label>
+				<select class="form-control" id="rating" name="rating" required>
+					<option value="">Select rating</option>
+					<option value="1">1 star</option>
+					<option value="2">2 stars</option>
+					<option value="3">3 stars</option>
+					<option value="4">4 stars</option>
+					<option value="5">5 stars</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit Review</button>
+		</form>
+	</div>
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.3/dist/umd/popper.min.js"
+      integrity="sha384-6HUoGrKjgoyRWNoOqOF3CY39VPd9K9XGVyODeaBYrI8T1T/yi6zK0NpIY6v/8qcC"
+      crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-PBOdIo3b8Wdt7GxMJwKTnz06LCVjvH8W5o5y5b5a5dO3J8bD+nVZzCFeIkKT+V7v"
+      crossorigin="anonymous"></script>
+</body>
+</html>

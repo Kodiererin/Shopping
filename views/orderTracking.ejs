@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order Tracking</title>
+	<!-- Add Bootstrap stylesheet -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		/* Add custom styles here */
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.container {
+			margin-top: 50px;
+			background-color: #ffffff;
+			border-radius: 5px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+		}
+
+		h1 {
+			margin-bottom: 50px;
+		}
+
+		label {
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"] {
+			border-radius: 5px;
+			padding: 10px;
+			border: none;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			width: 100%;
+		}
+
+		input[type="submit"] {
+			background-color: #007bff;
+			color: #ffffff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 30px;
+			margin-top: 20px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #0069d9;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Order Tracking</h1>
+		<form action="/orderTrack" method="post">
+			<div class="form-group">
+				<label for="orderNumber">Order Number</label>
+				<input type="text" id="orderNumber" name="orderNumber" placeholder="Enter your order number">
+			</div>
+			<input type="submit" value="Track Order">
+		</form>
+	</div>
+	<!-- Add Bootstrap scripts -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.3/dist/umd/popper.min.js"
+      integrity="sha384-6HUoGrKjgoyRWNoOqOF3CY39VPd9K9XGVyODeaBYrI8T1T/yi6zK0NpIY6v/8qcC"
+      crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-PBOdIo3b8Wdt7GxMJwKTnz06LCVjvH8W5o5y5b5a5dO3J8bD+nVZzCFeIkKT+V7v"
+      crossorigin="anonymous"></script>
+</body>
+</html>
+
+

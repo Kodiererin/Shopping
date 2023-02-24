@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Tracking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4">Order Tracking</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Order Number: <%=orderNo%></h3>
+        <input type="text" class="form-control" value="<%=lastData%>">
+      </div>
+    </div>
+    <div class="progress my-4">
+      <div class="progress-bar bg-success" role="progressbar" style="width: <%=val%>%" aria-valuenow="<%=val%>" aria-valuemin="0" aria-valuemax="100">Progress: <%=val%>%</div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-6">
+        <h3>Shipping Address:</h3>
+        <p>John Doe<br>
+        123 Main St.<br>
+        Anytown, USA 12345</p>
+      </div>
+    </div> -->
+  </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>To Do List</title><style>
+        /* CSS styling for the navigation menu */
+        nav {
+          background-color: #333;
+          color: #fff;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+        }
+        nav ul {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        nav li {
+          margin-right: 1rem;
+        }
+        nav a {
+          color: #fff;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1.2rem;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          transition: background-color 0.3s;
+        }
+        nav a:hover {
+          background-color: #666;
+        }
+      </style>
+    </head>
+    <body>
+      <nav>
+        <div>
+          <a href="#">Home</a>
+        </div>
+        <ul>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Cart</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+  
+    <div class="product-name"></div>
+    <h1><%=ItemName%></h1>
+    <% for (var i = 0; i < getData.length; i++) { %>
+      <div class="product-container" >    
+          <div class="product-details"><%=getData[i].details %></div>
+          <div class="product-price"><%= getData[i].price %></div>
+          <div class="seller-info">
+            <div class="seller-name"><%= getData[i].sellerName %></div>
+            <div class="seller-url"><%= getData[i].sellerID %></div>
+          </div>
+          <div class="product-reviews">
+              <table>
+              <% for (var j = 0; j < getData[i].productreviews.length; j++) { %>
+                  <tr><td><%= getData[i].productreviews[j] %></td></tr>
+                  <% } %>
+              </table>
+          </div>
+          <div class="seller-reviews">
+              <table><p>Product Reviews : </p>
+              <% for (var j = 0; j < getData[i].sellerreviews.length; j++) { %>
+                  <tr><td><%= if(j<5){ getData[i].sellerreviews[j] %>}</td></tr>
+                  <% } %>
+              </table>
+          </div>
+          <div class="product-buttons">
+            <input type="text" name="userId" id="" value="<%=getUserId%>" hidden>
+          <form action="/<%=getData[i]._id%>/<%=getUserId%>" method="POST" class="item">
+              <button class="buy-now" value="<%=getData[i]._id%>" type="submit">Buy Now</button>
+          </form>
+          <form action="/contact" method="post" class="item">
+              <button class="bargain">Contact Seller</button>            </form>
+           </form>
+      </div>
+        </div>
+  <% } %>
+
+</body>
+<footer> Copyright 2022 Ujjwal Kumar</footer>
+</html>

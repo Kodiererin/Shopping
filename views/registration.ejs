@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="/css/styles3.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100">
+    <div class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h3 class="text-center mb-4">Create an account</h3>
+              <form action="/regis" method="POST">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                </div>
+                <div class="form-group">
+                  <label for="confirm-password">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" name="password2">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-4">Sign up</button>
+              </form>
+              <div class="text-center mt-3">
+                <span>Already have an account?</span>
+                <a href="/" class="ml-2" name="signin">Sign in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap and JavaScript Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

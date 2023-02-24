@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Delivery Update Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-14IGwPqlroKjfGJxt7iK2jl+zZl7VZv4Y4U6K4z6StyU6d4vBn3qNO3hNyDK8Tkx9XurFCi+HnR65fJGSPCwLQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <style>
+      .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .form-check-label {
+        font-weight: 400;
+        color: #495057;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Product Delivery Update Form</h1>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-container">
+            <form action="/transitUpdate" method="POST">
+                <input type="text" name="sellerId" value="<%=sellerId%>" hidden>
+              <div class="form-group">
+                <label for="product-id">Product ID</label>
+                <input type="text" class="form-control" name="productId" id="product-id" placeholder="Enter product ID" value="<%=productID%>" >
+              </div>
+              <div class="form-group">
+                <label for="customer-id">Customer ID</label>
+                <input type="text" class="form-control" id="customer-id" name="customerId" placeholder="Enter customer ID" value="<%=customerID%>">
+              </div>
+              <div class="form-group">
+                <label>Transit Status</label>
+                <div class="form-check">
+                    <label class="form-check-label" for="standard-delivery">
+                      <input class="form-check-input" type="checkbox" id="standard-delivery" name="delivery_status[]" value="atSeller" >
+                    atSellerHub
+                  </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="express-delivery">
+                      <input class="form-check-input" type="checkbox"id="express-delivery" name="delivery_status[]" value="inTransit" >
+                    inTransit
+                  </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="next-day-delivery">
+                      <input class="form-check-input" type="checkbox" id="next-day-delivery" name="delivery_status[]" value="usersHub">
+                    usersHub
+                  </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="next-day-delivery">
+                      <input class="form-check-input" type="checkbox" id="next-day-delivery" name="delivery_status[]" value="outofDelivery">
+                    outofDelivery
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+    </html>

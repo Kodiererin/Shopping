@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Details Form</title>
+    <style>
+      /* style the form */
+      form {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      /* style the input fields */
+      input[type="text"], textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+      }
+      
+      /* style the submit button */
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      /* change the background color of the submit button on hover */
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/updateData" method="POST">
+      <h2>Product Details Form</h2>
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" name="productName" placeholder="Enter product name">
+      
+      <label for="sellerName">Seller Name:</label>
+      <input type="text" id="sellerName" name="sellerName" placeholder="Enter seller name">
+      
+      <label for="sellerId">Seller ID:</label>
+      <input type="text" id="sellerId" name="sellerId" placeholder="Enter seller ID">
+      
+      <label for="productDetails">Product Details:</label>
+      <textarea id="productDetails" name="productDetails" placeholder="Enter product details"></textarea>
+      
+      <label for="productPrice">Product Price:</label>
+      <input type="text" id="productPrice" name="productPrice" placeholder="Enter product price">
+      
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

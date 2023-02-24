@@ -1,0 +1,30 @@
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .card {
+    border: none;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background-color: #55acee;
+    border-color: #55acee;
+  }
+  
+  .btn-primary:hover {
+    background-color: #489bc9;
+    border-color: #489bc9;
+  }
+  
+  a {
+    color: #55acee;
+  }
+  
+  a:hover {
+    color: #489bc9;
+  }
+  

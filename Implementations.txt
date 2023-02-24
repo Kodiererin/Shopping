@@ -1,0 +1,11 @@
+1. This is a shopping pagw where there are two sides of the page.
+    a. First side is the User.
+        i. User Log In/Register with the page.
+       ii. Can track the orders.
+       iii. Can review and rate the product.
+       iV. Can contact the seller.
+    b. Second Side - Seller 
+        i. Can create its id/login.
+        ii. Seller can update/edit/add products.
+        iii. Can track/update the orders.
+        iV. Can chat with the user.
