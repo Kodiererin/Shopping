@@ -19,139 +19,6 @@ const item = require("./models/item");
 const seller = require("./models/seller");
 const user = require("./models/user");
 
-// const item = mongoose.model('item' ,new mongoose.Schema({
-//     name : {
-//         type : String,
-//         uppercase : true,
-//     },
-//     sellerName : {
-//         type : String,
-//         boolean : true,
-//     },
-//     sellerID : {
-//         type : String,
-//         required : true,
-//     },
-//     productDetails : {
-//         type : String,
-//     },
-//     productreviews : {
-//         type : Array,
-//         default : [String],
-//     },
-//     sellerreviews : {
-//         type : Array,
-//         default : [String],
-//     },
-//     price : {
-//         type : Number,
-//         minimum : 0,
-//         required : true,
-//     },
-// }));
-
-// // ////////////////////-Database-for-Chat-//////////////////////////////////
-// const userSchema = mongoose.Schema(
-//     {
-//       username: {
-//         type: String,
-//         require: true,
-//       },
-//       email: {
-//         type: String,
-//         require: true,
-//       },
-//       password: {
-//         type: String,
-//         require: true,
-//       },
-//     },
-//     { timestamps: true }
-//   );
-  
-//   const usersChat = new mongoose.model("userChat", userSchema);
-
-// /////////////////////////////-Creating-Users-Data//////////////////////////////////////////////////////////////////////
-
-// const user = mongoose.model('user',new mongoose.Schema({
-//     name : {
-//         type : String,
-//     },
-//     email : {
-//         type : String,
-//     },
-//     password : {
-//         type : String,
-//     },
-//     userorders : [{
-//         orderId : {type : String},
-//         orderstatus : {
-//             atSellerHub : {
-//                 type : Boolean , default : false,
-//             },
-//             inTransit : {
-//                 type : Boolean, default : false,
-//             },
-//             usersHub : {
-//                 type : Boolean, default : false,
-//             },
-//             outofDelivery : {
-//                 type : Boolean, default : false,
-//             },
-//         }
-//     }
-//     ],
-// }));
-
-// const seller = mongoose.model('seller' , new mongoose.Schema({
-//     name : {type : String},
-//     sellerId : {type : String , unique : true },
-//     password : {type : String },
-//     orders : [
-//         {
-//             productId : {
-//                 type : String
-//             },
-//             customerId : {
-//                 type : String,
-//             },
-//             customerPhone : {
-//                 type : String,
-//             },
-//             customerAddress : {
-//                 type : String,
-//             },
-//             status : {
-//                 atSellerHub : {
-//                     type : Boolean , default : true,
-//                 },
-//                 inTransit : {
-//                     type : Boolean, default : false,
-//                 },
-//                 usersHub : {
-//                     type : Boolean, default : false,
-//                 },
-//                 outofDelivery : {
-//                     type : Boolean, default : false,
-//                 },
-//             }
-//         }
-//     ],
-//     sellerReview : [
-//         {
-//             sellerReview : {
-//                 type : String,
-//             },
-//             sellerRating : {
-//                 type : String,
-//             }
-//         }
-//     ]
-// }));
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 // name , email , password , 
 // Registration Form
 app.get('/register',function(req,res){
@@ -418,6 +285,31 @@ app.get('/buynow',function(req,res){
 })
 
 
+app.post('/cart/:productId/:userId' , async function(req,res){
+    let getId = req.params.productId;
+        getId = getId+"";
+    let userId = req.params.userId;
+        userId = userId+"";
+    console.log("Adding to Cart");
+    console.log("Product ID "+getId);
+    console.log("User ID "+userId);
+    const ItemId = getId;
+    user.updateOne({_id : userId} , {"$push" : { userCart: ItemId }} , function(err , res){
+        if(!err && res){
+            console.log(res);
+        }
+        else{
+            console.log(err);
+        }
+    })
+
+})
+//////////////////////////Continue From Here///////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+app.get('/cart/:userID',function(req,res){
+
+})
 app.post('/:productId/:userId',async function(req,res){
     let getId = req.params.productId;
     getId = getId+"";
@@ -435,6 +327,8 @@ app.post('/:productId/:userId',async function(req,res){
         res.render('buynow',{ getId , userId,product : result})
     });
 })
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/order/:productId/:userId/:sellerID' , function(req,res){
     // res.send('<h1>Your Order is successful</h1>');

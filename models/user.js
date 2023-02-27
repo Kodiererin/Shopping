@@ -27,6 +27,9 @@ const user = mongoose.model('user',new mongoose.Schema({
         }
     }
     ],
+    userCart :{
+        type : Array
+    }
 }));
 
 module.exports = user;
