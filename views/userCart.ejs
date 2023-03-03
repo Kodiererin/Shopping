@@ -34,12 +34,14 @@
 					<td><%=products[i].name%></td>
 					<td><%=products[i].price%></td>
 					<td><%=products[i].sellerName%></td>
-					<td><button type="submit" value="/buyNow/<%=products[i]._id%>/<%=getId%>" onclick="openlink" >Place Order</button></td>
+					<td><button type="submit" value="/buyNow/<%=products[i]._id%>/<%=getId%>" id ="/buyNow/<%=products[i]._id%>/<%=getId%>">Place Order</button></td>
 				</tr>
 			</tfoot>
 		<%}%>
 	</table>
 	<br>
 	<button>Checkout</button>
+
+	<script src="./Helper/help_userCart.js"></script>
 </body>
 </html>
