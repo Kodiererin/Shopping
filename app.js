@@ -313,34 +313,29 @@ app.get('/cart/:userID',async function(req,res){
     const getId = req.params.userID+"";
     console.log(getId);
 
-    // Proceed HEre with the code.
-
-    // let myProducts = [];
-    // let products=[];
-    // user.findById(req.params.userID, function(err,success){
-    //     if(!err && success){
-    //         console.log(success);
-    //         for(let i=0 ; i<success.userCart.length ; i++){
-    //             console.log(success.userCart[i]);
-    //             let myCart = success.userCart[i]+"";
-    //             item.findById(myCart , function(err , done){
-    //                 if(!err && done){
-    //                     products.push(done);
-    //                     // console.log(products);
-    //                     // console.log(done);
-    //                 }
-    //                 else{
-    //                     console.log(err);
-    //                 }
-    //             })
-    //             myProducts = products;
-    //         }
-    //     }
-    //     else{
-    //         console.log(err);
-    //     }
-    // })
-    // console.log(myProducts);
+    // Proceed Here with the code!!!
+    let products=[];
+    user.findById(req.params.userID, function(err,success){
+        if(!err && success){
+            console.log(success);
+            for(let i=0 ; i<success.userCart.length ; i++){
+                console.log(success.userCart[i]);
+                let myCart = success.userCart[i]+"";
+                item.findById(myCart , function(err , done){
+                    if(!err && done){
+                        products.push(done);
+                        console.log(products);
+                    }
+                    else{
+                        console.log(err);
+                    }
+                })
+            }
+        }
+        else{
+            console.log(err);
+        }
+    })
     res.render('userCart');
 })
 app.post('/:productId/:userId',async function(req,res){
