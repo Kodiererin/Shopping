@@ -18,22 +18,26 @@
 	</style>
 </head>
 <body>
-	<h1>Shopping Cart</h1>
+	<h1>Shopping Cart <%products%></h1>
 	<table>
 		<thead>
 			<tr>
 				<th>Product Name</th>
-				<th>Quantity</th>
 				<th>Price</th>
+				<th>Seller</th>
+				<th>Buy Now</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td>Product 1</td>
-				<td>1</td>
-				<td>$10.00</td>
-			</tr>
-		</tfoot>
+		<%for(let i=0 ; i<products.length ; i++){%>
+			<tbody>
+				<tr>
+					<td><%=products[i].name%></td>
+					<td><%=products[i].price%></td>
+					<td><%=products[i].sellerName%></td>
+					<td><button type="submit" value="/buyNow/<%=products[i]._id%>/<%=getId%>" onclick="openlink" >Place Order</button></td>
+				</tr>
+			</tfoot>
+		<%}%>
 	</table>
 	<br>
 	<button>Checkout</button>
