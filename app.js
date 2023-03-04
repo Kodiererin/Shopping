@@ -212,9 +212,18 @@ const myItem = req.body.searchItem;
 })
 
 // Setting Up the User Profile
+// Set up the User Profile pic for further use.
 
-app.get('/profile',function(req,res){
-    res.render('userProfile');
+app.get('/userProfile/:userId',async function(req,res){
+    let getUser = req.params.userId;
+    console.log(getUser);
+    if(mongoose.isValidObjectId(getUser)){
+        user.findById(req.params.userId,function(err,success){
+            if(!err && success){
+                res.render('userProfile',{userId : success})
+            }
+        })
+    }
 })
 
 

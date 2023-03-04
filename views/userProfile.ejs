@@ -10,7 +10,7 @@
     <title>User Profile</title>
 </head>
 <body>
-
+    <%userId%>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -47,8 +47,8 @@
                     </div>
                 </div>
                 <div class="md:w-3/4 px-5">
-                    <h1 class="text-2xl font-bold text-gray-800">Jane Doe</h1>
-                    <p class="text-gray-700 mt-2">jane.doe@gmail.com</p>
+                    <h1 class="text-2xl font-bold text-gray-800"><%=userId.name%></h1>
+                    <p class="text-gray-700 mt-2"><%=userId.email%></p>
                     <div class="mt-5">
                         <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-3">Edit Profile</a>
                         <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-md">Logout</a>
