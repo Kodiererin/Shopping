@@ -1,24 +1,36 @@
 const mongoose = require('mongoose');
-
-const userSchema = mongoose.Schema(
-    {
-      username: {
-        type: String,
-        require: true,
-      },
-      email: {
-        type: String,
-        require: true,
-      },
-      password: {
-        type: String,
-        require: true,
-      },
+const user = mongoose.model('user',new mongoose.Schema({
+    name : {
+        type : String,
     },
-    { timestamps: true }
-  );
-  
-  const usersChat = new mongoose.model("userChat", userSchema);
+    email : {
+        type : String,
+    },
+    password : {
+        type : String,
+    },
+    userorders : [{
+        orderId : {type : String},
+        orderstatus : {
+            atSellerHub : {
+                type : Boolean , default : false,
+            },
+            inTransit : {
+                type : Boolean, default : false,
+            },
+            usersHub : {
+                type : Boolean, default : false,
+            },
+            outofDelivery : {
+                type : Boolean, default : false,
+            },
+        }
+    }
+    ],
+    userCart :{
+        type : Array,
+        default : [],
+    }
+}));
 
-
-module.exports = userSchema;
+module.exports = user;

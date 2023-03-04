@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shopping Cart</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+	<h1>Shopping Cart <%products%></h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Product Name</th>
+				<th>Price</th>
+				<th>Seller</th>
+				<th>Buy Now</th>
+			</tr>
+		</thead>
+		<%for(let i=0 ; i<products.length ; i++){%>
+			<tbody>
+				<tr>
+					<td><%=products[i].name%></td>
+					<td><%=products[i].price%></td>
+					<td><%=products[i].sellerName%></td>
+					<td><button type="submit" value="/buyNow/<%=products[i]._id%>/<%=getId%>" id ="/buyNow/<%=products[i]._id%>/<%=getId%>">Place Order</button></td>
+				</tr>
+			</tfoot>
+		<%}%>
+	</table>
+	<br>
+	<button>Checkout</button>
+
+	<script src="./Helper/help_userCart.js"></script>
+</body>
+</html>

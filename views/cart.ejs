@@ -45,20 +45,20 @@
         </div>
         <ul>
           <li><a href="#">Profile</a></li>
-          <li><a href="/cart/<%=getUserId%>">Cart</a></li>
+          <li><a href="#">Cart</a></li>
           <li><a href="/">Logout</a></li>
         </ul>
       </nav>
   
     <div class="product-name"></div>
-    <h1><%=ItemName%></h1>
+    <h1><%=getData.name%></h1>
     <% for (var i = 0; i < getData.length; i++) { %>
       <div class="product-container" >    
           <div class="product-details"><%=getData[i].details %></div>
           <div class="product-price"><%= getData[i].price %></div>
           <div class="seller-info">
-            <div class="seller-name"><%= getData[i].sellerName %></div>
-            <div class="seller-url"><%= getData[i].sellerID %></div>
+        <div class="seller-name"><%= getData[i].sellerName %></div>
+        <div class="seller-url"><%= getData[i].sellerID %></div>
           </div>
           <div class="product-reviews">
               <table>
@@ -77,6 +77,9 @@
           </form>
           <form action="/cart/<%=getData[i]._id%>/<%=getUserId%>" method="POST" class="item">
             <button class="buy-now" value="<%=getData[i]._id%>" type="submit">Add to Cart</button>
+        </form>
+          <form action="/removeCart/<%=getData[i]._id%>/<%=getUserId%>" method="POST" class="item">
+            <button class="buy-now" value="<%=getData[i]._id%>" type="submit">Remove</button>
         </form>
           <form action="/contact" method="post" class="item">
               <button class="bargain">Contact Seller</button>            </form>
