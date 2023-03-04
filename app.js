@@ -211,6 +211,15 @@ const myItem = req.body.searchItem;
    }
 })
 
+// Setting Up the User Profile
+
+app.get('/profile',function(req,res){
+    res.render('userProfile');
+})
+
+
+
+
 // Setting up for client seller chat    Check and Fix the Code
 app.post('/contact' , function(req,res){
   // Send a response to the client indicating that the server has started
