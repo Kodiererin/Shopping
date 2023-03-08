@@ -181,6 +181,21 @@ app.post('/search',async function(req,res){
 
 const myItem = req.body.searchItem;
    console.log(myItem);
+   if(myItem==[]){
+    // Create a Another Page for all Items! As it will render all the Items in the page when the search field is empty.
+    const getitem =  item.find({},function(err,result){
+        console.log(result);
+        if(!err){
+            if(result!=[] || result!=null || result!=undefined){
+                console.log(result);
+                res.render('buyer',{ItemName : myItem , getData : result , getUserId});
+            }
+            else{
+                res.render('productnotfound');
+            }
+        }
+});
+   }
    if(myItem!=null && myItem!=undefined){
         const getitem =  item.find({name: myItem},function(err,result){
             console.log(result);
